@@ -1,4 +1,4 @@
-# Visual Search Task Using Natural Stimuli
+# Audiovisual Search Task Using Natural Stimuli
 
 We perform visual searches multiple times a day. Before leaving the house, for example, we might have to search for our keys. But how exactly do 
 we know where to look? Research in the field of visual perception and search has mostly focused on understanding and examining unnatural, abstract 
@@ -26,7 +26,8 @@ Participants will have to do 15 practice trials first to get used to the task. A
 
 
 # Hypothesis
-Participants will exhibit faster reaction times in congruent trials (trials where sound and image match) compared to incongruent trials (trials where sound and image do not match) during the visual search task using natural stimuli, indicating that congruent multisensory information enhances visual search efficiency. Similarily, participants will report that the cued target object is not present when it is in fact not present faster, if the sound played does not match the cued target, as it reinforces the believe that the item really is not present in the search display. 
+Participants will exhibit faster reaction times in congruent trials (trials where sound and image match) compared to incongruent trials (trials where sound and image do not match) during the visual search task using natural stimuli, indicating that congruent multisensory information enhances visual search efficiency. <p></p>
+Similarily, participants will report that the cued target object is not present when it is in fact not present faster, if the sound played does not match the cued target, as it reinforces the believe that the item really is not present in the search display. 
 
 
 # Stimuli 
