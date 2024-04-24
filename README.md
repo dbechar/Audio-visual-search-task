@@ -22,7 +22,6 @@ Participants will exhibit faster reaction times in congruent trials (trials wher
 Similarily, participants will report that the cued target object is not present when it is in fact not present faster, if the sound played does not match the cued target, as it reinforces the believe that the item really is not present in the search display. 
 
 # Procedure
-At the beginning of each trial, a fixation cross is presented for 500ms. Afterwards, the target cue is shown (e.g., "car") for a duration of 1500 ms, immediately followed by another fixation cross that is shown for another 300 ms. Lastly, the search display is presented in which the target is either present or not. At the same time, a sound will be played that is either
-congruent or incongruent with the cued target object. <p></p>
+At the beginning of each trial, a fixation cross is presented for 500ms. Afterwards, the target cue is shown (e.g., "car") for a duration of 1500 ms, immediately followed by another jittered fixatin cross that is shown for a duration of 300 to 500 ms. This minimizes participants being able to predict the exact appearance of the search screen. Lastly, the search display is presented in which the target is either present or not. At the same time, a sound will be played that is either congruent or incongruent with the cued target object. <p></p>
 
 Participants will have to do 15 practice trials first to get used to the task. Afterwards, the experiment begins and participants can start with the actual experiment.
