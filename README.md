@@ -12,7 +12,7 @@ qualitatively alter the perception of a visual stimulus. Therefore, they showed 
 
  
 # This experiment  
-I want to see whether hearing and seeing an item will improve visual search compared to seeing the item without sound/with the sound of another item. <p></p>
+I want to see whether hearing and seeing an item at the same time will improve search compared to seeing the item with the sound of another item. <p></p>
 
 At each time, <i> N </i> = 12 pictures are presented at random locations within a circle on the display such that there is no overlap between the pictures. 
 N will stay fixed throughout all trials. Participants are told an object and asked whether it is present in the following search display, having to indicate their answer via key-press/mouse (mouse to show were exactly the target object is?). During the search, a sound will be played that either corresponds to the target object or not. <p></p>
