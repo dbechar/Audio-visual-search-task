@@ -16,12 +16,6 @@ audio_directory = os.path.join(stimuli_directory, "audio")
 visual_directory = os.path.join(stimuli_directory, "visual")
 triallists_directory = os.path.join(experiment_directory, "triallists")
 
-print(f"Experiment Directory: {experiment_directory}")
-print(f"Stimuli Directory: {stimuli_directory}")
-print(f"Audio Directory: {audio_directory}")
-print(f"Visual Directory: {visual_directory}")
-print(f"Triallists Directory: {triallists_directory}")
-
 targets_df = pd.read_csv(os.path.join(stimuli_directory, "target.csv"))
 targets = targets_df['target'].tolist()
 
