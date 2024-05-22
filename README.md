@@ -14,14 +14,14 @@ qualitatively alter the perception of a visual stimulus. Therefore, they showed 
 # This experiment  
 I want to see whether hearing and seeing an item at the same time will improve search compared to seeing the item with the sound of another item. <p></p>
 
-At each time, <i> N </i> = 12 pictures are presented at random locations within a circle on the display such that there is no overlap between the pictures. 
-N will stay fixed throughout all trials. Participants are told an object and asked whether it is present in the following search display, having to indicate their answer via key-press/mouse (mouse to show were exactly the target object is?). During the search, a sound will be played that either corresponds to the target object or not. <p></p>
+At each time, <i> N </i> = 4 pictures are presented at random locations within a circle on the display such that there is no overlap between the pictures. 
+N will stay fixed throughout all trials. Participants are told an object and asked whether it is present in the following search display, having to indicate their answer via key-press (F-key for "target present" and the J-key for "target absent"). During the search, a sound will be played that either corresponds to the target object or not. <p></p>
 
 # Hypothesis
-Participants will exhibit faster reaction times in congruent trials (trials where sound and image match) compared to incongruent trials (trials where sound and image do not match) during the visual search task using natural stimuli, indicating that congruent multisensory information enhances visual search efficiency. <p></p>
+Participants will exhibit faster reaction times and make less errors in congruent trials (trials where sound and image match) compared to incongruent trials (trials where sound and image do not match) during the visual search task using natural stimuli, indicating that congruent multisensory information enhances visual search efficiency. <p></p>
 Similarily, participants will report that the cued target object is not present when it is in fact not present faster, if the sound played does not match the cued target, as it reinforces the believe that the item really is not present in the search display. 
 
 # Procedure
-At the beginning of each trial, a fixation cross is presented for 500ms. Afterwards, the target cue is shown (e.g., "car") for a duration of 1500 ms, immediately followed by another jittered fixatin cross that is shown for a duration of 300 to 500 ms. This minimizes participants being able to predict the exact appearance of the search screen. Lastly, the search display is presented in which the target is either present or not. At the same time, a sound will be played that is either congruent or incongruent with the cued target object. <p></p>
+At the beginning of each trial, a fixation cross is presented for 400ms. Afterwards, the target cue is shown (e.g., "dog") for a duration of 800 ms, immediately followed by another jittered fixatin cross that is shown for a duration of 200 to 400 ms. This minimizes participants being able to predict the exact appearance of the search screen. Lastly, the search display is presented in which the target is either present or not. At the same time, a sound will be played that is either congruent or incongruent with the cued target object. The search display including the sound will be displaied either until a response is given or for maximally 5000 ms. Between two trials a blank screen will be shown for 500ms. <p></p>
 
 Participants will have to do 15 practice trials first to get used to the task. Afterwards, the experiment begins and participants can start with the actual experiment.
