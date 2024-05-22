@@ -7,11 +7,20 @@ congruent_ratio = 0.5
 n_triallists = 10
 n_trials = 10
 
-experiment_directory = os.path.dirname(os.path.dirname(__file__))
+try:
+    experiment_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+except NameError:
+    experiment_directory = os.getcwd()
 stimuli_directory = os.path.join(experiment_directory, "stimuli")
 audio_directory = os.path.join(stimuli_directory, "audio")
 visual_directory = os.path.join(stimuli_directory, "visual")
 triallists_directory = os.path.join(experiment_directory, "triallists")
+
+print(f"Experiment Directory: {experiment_directory}")
+print(f"Stimuli Directory: {stimuli_directory}")
+print(f"Audio Directory: {audio_directory}")
+print(f"Visual Directory: {visual_directory}")
+print(f"Triallists Directory: {triallists_directory}")
 
 targets_df = pd.read_csv(os.path.join(stimuli_directory, "target.csv"))
 targets = targets_df['target'].tolist()
@@ -33,12 +42,12 @@ def create_trial(targets, present_ratio, congruent_ratio):
     if present:
         images.append(f"{cue}.png")
         non_cue_targets = [t for t in targets if t != cue]
-        images += random.sample(non_cue_targets, 3)
+        images += [f"{img}.png" for img in random.sample(non_cue_targets, 3)]
     else:
         non_cue_targets = [t for t in targets if t != cue]
-        images = random.sample(non_cue_targets, 4)
+        images = [f"{img}.png" for img in random.sample(non_cue_targets, 4)]
     
-    image_paths = [os.path.join(visual_directory, f"{img}") for img in images]
+    image_paths = [os.path.join(visual_directory, img) for img in images]
     
     return [cue, present, congruent, audio_path] + image_paths
 
