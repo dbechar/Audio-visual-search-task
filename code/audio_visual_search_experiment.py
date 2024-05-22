@@ -1,5 +1,4 @@
-from os.path import join, dirname, abspath, exists
-from os import makedirs
+from os.path import join, dirname, abspath
 from pandas import read_csv
 import expyriment
 import random
@@ -13,15 +12,9 @@ expyriment.control.set_develop_mode(on=True)  # Set develop mode. Comment out fo
 
 fixcross = expyriment.stimuli.FixCross(size=(25, 25), line_width=3, colour=expyriment.misc.constants.C_WHITE)
 
+
 code_directory = dirname(abspath(__file__))
-base_directory = dirname(code_directory)
-triallists_directory = join(base_directory, "triallists")
-data_directory = join(base_directory, "data")
-
-# Ensure the data directory exists
-if not exists(data_directory):
-    makedirs(data_directory)
-
+triallists_directory = join(dirname(code_directory), "triallists")
 trial_list_filename = join(triallists_directory, f"triallist_{participant_number.zfill(2)}.csv")
 trials = read_csv(trial_list_filename)
 
@@ -36,7 +29,7 @@ instructions = (
     "Press any key to start."
 )
 
-expyriment.stimuli.TextScreen("Instructions", instructions).present()
+expyriment.stimuli.TextScreen("Instructions", heading_size = 60, text = instructions).present()
 exp.keyboard.wait()
 
 def get_non_overlapping_positions(num_positions, radius, image_size, center):
@@ -44,9 +37,10 @@ def get_non_overlapping_positions(num_positions, radius, image_size, center):
     while len(positions) < num_positions:
         angle = random.uniform(0, 2 * math.pi)
         distance = random.uniform(0, radius)
-        x = center[0] + distance * math.cos(angle)
-        y = center[1] + distance * math.sin(angle)
+        x =  distance * math.cos(angle)
+        y =  distance * math.sin(angle)
         
+        # Check if the new position overlaps with any existing positions
         overlap = False
         for pos in positions:
             if abs(x - pos[0]) < image_size[0] and abs(y - pos[1]) < image_size[1]:
@@ -63,17 +57,19 @@ for row in trials.itertuples():
     target_present = row.present
     audio_congruent = row.congruent
     audio = expyriment.stimuli.Audio(join("sounds", row.audio))
+
     images = [expyriment.stimuli.Picture(join("pictures", getattr(row, f"img{i}"))) for i in range(1, 5)]
-    
     for image in images:
-        #image.resize((100, 100))
         image.preload()
     
+    exp.screen.clear()
+    exp.clock.wait (1000)
+
     fixcross.present()
-    exp.clock.wait(300)
+    exp.clock.wait(400)
 
     expyriment.stimuli.TextLine(cue).present()
-    exp.clock.wait(1000)
+    exp.clock.wait(750)
 
     fixation_duration = random.randint(200, 400)
     fixcross.present()
@@ -82,31 +78,31 @@ for row in trials.itertuples():
     audio.preload()
     audio.present()
 
-    # Randomly position images within a circle around the center
     screen_center = (exp.screen.window_size[0] // 2, exp.screen.window_size[1] // 2)
-    radius = 500  # Example radius, adjust as needed
+    radius = 400  # Example radius, adjust as needed
     image_size = (100, 100)
     positions = get_non_overlapping_positions(4, radius, image_size, screen_center)
+    print (positions)
     
+    can = expyriment.stimuli.Canvas(exp.screen.window_size)
     for image, position in zip(images, positions):
-        image.position = position
-        image.present()
+        image.reposition(position)
+        image.plot(can)
+        
+    can.present()
 
-    response_given = False
     exp.clock.reset_stopwatch()
-    max_duration = 5000  # maximum duration that the search display will be shown in milliseconds
+    response_given = False
 
-    while not response_given and exp.clock.stopwatch_time < max_duration:
-        key_rt = exp.keyboard.check()
+    while not response_given:
+        key_rt = exp.keyboard.wait(duration = 5000)
         if key_rt:
             key, rt = key_rt
             response_given = True
+            audio.stop()
         else:
             key, rt = None, None
 
     exp.data.add([row.cue, row.present, row.congruent, row.audio, row.img1, row.img2, row.img3, row.img4, key, rt])
-
-data_filename = join(data_directory, f"participant_{participant_number.zfill(2)}.xpd")
-exp.data.save(data_filename)
 
 expyriment.control.end()
