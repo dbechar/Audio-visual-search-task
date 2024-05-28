@@ -23,13 +23,24 @@ expyriment.control.start()
 
 instructions = (
     "Welcome to this audio-visual search experiment!\n\n"
-    "Please carefully read the instructions below before beginning.\n\n"
-    "In each trial, you'll be presented with the name of an object (for example 'dog') that you'll need to locate in the following search display.\n\n"
-    "Your task is to determine whether the previously cued object is present by pressing the F-key for 'present' or the J-key for 'not present'.\n\n\n\n"
-    "Press any key to start."
+    "Please carefully read the instructions below before beginning:\n\n"
+    "In each trial, you'll be presented with the name of an object (for example 'dog')."
+    "Your task is to locate this object in the following search display.\n\n"
+    "For each search display, an audio cue will also be played. Please ensure your audio is on and at a comfortable volume level.\n\n"
+    "Your task is to determine whether the previously cued object is present in the display. "
+    "Press the 'F' key if the object is present, and press the 'J' key if the object is not present.\n\n"
+    "When you are ready, press any key to start the experiment.\n\n"
+    "Thank you for your participation and good luck!"
 )
 
-expyriment.stimuli.TextScreen("Instructions", heading_size = 60, text = instructions).present()
+instruction_box = expyriment.stimuli.TextBox(
+    size=(900, 500),  
+    text=instructions,
+    text_size=25,
+    text_colour=expyriment.misc.constants.C_WHITE,
+    background_colour=expyriment.misc.constants.C_BLACK,
+    position=(0, 0))
+instruction_box.present()
 exp.keyboard.wait()
 
 def get_non_overlapping_positions(num_positions, radius, image_size, center):
@@ -58,18 +69,18 @@ for row in trials.itertuples():
     audio_congruent = row.congruent
     audio = expyriment.stimuli.Audio(join("sounds", row.audio))
 
-    images = [expyriment.stimuli.Picture(join("pictures", getattr(row, f"img{i}"))) for i in range(1, 5)]
+    images = [expyriment.stimuli.Picture(join("pictures", getattr(row, f"img{i}"))) for i in range(1, 9)]
     for image in images:
         image.preload()
     
     exp.screen.clear()
-    exp.clock.wait (1000)
+    exp.clock.wait (1500)
 
     fixcross.present()
-    exp.clock.wait(400)
+    exp.clock.wait(500)
 
-    expyriment.stimuli.TextLine(cue).present()
-    exp.clock.wait(750)
+    expyriment.stimuli.TextLine(cue, text_size = 25, text_colour = (255, 255, 255)).present()
+    exp.clock.wait(800)
 
     fixation_duration = random.randint(200, 400)
     fixcross.present()
@@ -79,10 +90,9 @@ for row in trials.itertuples():
     audio.present()
 
     screen_center = (exp.screen.window_size[0] // 2, exp.screen.window_size[1] // 2)
-    radius = 400  # Example radius, adjust as needed
+    radius = 350  # adjust as needed (depending on screen size)
     image_size = (100, 100)
-    positions = get_non_overlapping_positions(4, radius, image_size, screen_center)
-    print (positions)
+    positions = get_non_overlapping_positions(8, radius, image_size, screen_center)
     
     can = expyriment.stimuli.Canvas(exp.screen.window_size)
     for image, position in zip(images, positions):
@@ -103,6 +113,21 @@ for row in trials.itertuples():
         else:
             key, rt = None, None
 
-    exp.data.add([row.cue, row.present, row.congruent, row.audio, row.img1, row.img2, row.img3, row.img4, key, rt])
+    exp.data.add([row.cue, row.present, row.congruent, row.audio, row.img1, row.img2, row.img3, row.img4, row.img5, row.img6, row.img7, row.img8, key, rt])
+
+thank_you_message = ("Thank you for your participation!\n\n"
+                     "You have now finished the experiment and can close it.\n\n"
+                    "I hope you enjoyed it :)")
+
+thank_you_box = expyriment.stimuli.TextBox(
+    size=(800, 400),  
+    text=thank_you_message,
+    text_size=25,
+    text_colour=expyriment.misc.constants.C_WHITE,
+    background_colour=expyriment.misc.constants.C_BLACK,
+    position=(0, 0))  
+
+thank_you_box.present()
+exp.keyboard.wait()
 
 expyriment.control.end()

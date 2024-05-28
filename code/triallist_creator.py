@@ -5,7 +5,7 @@ import pandas as pd
 present_ratio = 0.5
 congruent_ratio = 0.5
 n_triallists = 10
-n_trials = 10
+n_trials = 15
 
 try:
     experiment_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,10 +36,10 @@ def create_trial(targets, present_ratio, congruent_ratio):
     if present:
         images.append(f"{cue}.png")
         non_cue_targets = [t for t in targets if t != cue]
-        images += [f"{img}.png" for img in random.sample(non_cue_targets, 3)]
+        images += [f"{img}.png" for img in random.sample(non_cue_targets, 7)]
     else:
         non_cue_targets = [t for t in targets if t != cue]
-        images = [f"{img}.png" for img in random.sample(non_cue_targets, 4)]
+        images = [f"{img}.png" for img in random.sample(non_cue_targets, 8)]
     
     image_paths = [os.path.join(visual_directory, img) for img in images]
     
@@ -47,7 +47,7 @@ def create_trial(targets, present_ratio, congruent_ratio):
 
 for i in range(n_triallists):
     trials = [create_trial(targets, present_ratio, congruent_ratio) for _ in range(n_trials)]
-    triallist_df = pd.DataFrame(trials, columns=['cue', 'present', 'congruent', 'audio', 'img1', 'img2', 'img3', 'img4'])
+    triallist_df = pd.DataFrame(trials, columns=['cue', 'present', 'congruent', 'audio', 'img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img7', 'img8'])
 
     triallist_filename = f"triallist_{str(i+1).zfill(2)}.csv"
     triallist_path = os.path.join(triallists_directory, triallist_filename)
