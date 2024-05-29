@@ -18,7 +18,7 @@ triallists_directory = join(dirname(code_directory), "triallists")
 trial_list_filename = join(triallists_directory, f"triallist_{participant_number.zfill(2)}.csv")
 trials = read_csv(trial_list_filename)
 
-exp.add_data_variable_names(['cue', 'present', 'congruent', 'audio', 'img1', 'img2', 'img3', 'img4', 'key', 'rt'])
+exp.add_data_variable_names(['cue', 'present', 'congruent', 'audio', 'img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img7', 'img8', 'key', 'rt'])
 expyriment.control.start()
 
 instructions = (
